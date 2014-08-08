@@ -54,7 +54,7 @@ def example(np.ndarray[np.double_t, ndim=2] X):
     s.raw_print()
     print(np.linalg.svd(np.dot(X.T,X),compute_uv=False))
 
-    U,S,V=svd_wrapper(np.random.random((5000,2000)))
+    U,S,V=svd_wrapper(np.random.random((100,50)))
     print(S)
 
     return Y

@@ -92,27 +92,27 @@ cdef extern from "armadillo" namespace "arma" nogil:
         void raw_print() nogil
 
     # Armadillo Linear Algebra tools
-    cdef bool chol(mat R, mat X) # preallocated result
-    cdef mat chol(mat X) # new result
-    cdef bool inv(mat R, mat X)
-    cdef mat inv(mat X)
-    cdef bool solve(vec x, mat A, vec b)
-    cdef vec solve(mat A, vec b)
-    cdef bool solve(mat X, mat A, mat B)
-    cdef mat solve(mat A, mat B)
-    cdef bool eig_sym(vec eigval, mat eigvec, mat B)
-    cdef vec svd(mat X)
-    cdef bool svd(vec s, mat X)
-    cdef bool svd(mat U, vec s, mat V, mat X)
-    cdef bool svd(mat U, vec s, mat V, mat X, char* method)  #method='dc' is the default for v4.0+
-    cdef bool svd_econ(mat U, vec s, mat V, mat X)
-    cdef bool svd_econ(mat U, vec s, mat V, mat X, char* side)
-    cdef bool svd_econ(mat U, vec s, mat V, mat X, char* side, char * method)   #side='both', method = "dc"
-    cdef bool lu(mat L, mat U, mat P, mat X)
-    cdef bool lu(mat L, mat U, mat X)
-    cdef mat pinv(mat A)
-    cdef bool pinv(mat B, mat A)
-    cdef bool qr(mat Q, mat R, mat X)
+    cdef bool chol(mat R, mat X) nogil # preallocated result
+    cdef mat chol(mat X) nogil # new result
+    cdef bool inv(mat R, mat X) nogil
+    cdef mat inv(mat X) nogil
+    cdef bool solve(vec x, mat A, vec b) nogil
+    cdef vec solve(mat A, vec b) nogil
+    cdef bool solve(mat X, mat A, mat B) nogil
+    cdef mat solve(mat A, mat B) nogil
+    cdef bool eig_sym(vec eigval, mat eigvec, mat B) nogil
+    cdef vec svd(mat X) nogil
+    cdef bool svd(vec s, mat X) nogil
+    cdef bool svd(mat U, vec s, mat V, mat X) nogil
+    cdef bool svd(mat U, vec s, mat V, mat X, char* method) nogil  #method='dc' is the default for v4.0+
+    cdef bool svd_econ(mat U, vec s, mat V, mat X) nogil
+    cdef bool svd_econ(mat U, vec s, mat V, mat X, char* side) nogil
+    cdef bool svd_econ(mat U, vec s, mat V, mat X, char* side, char * method) nogil   #side='both', method = "dc"
+    cdef bool lu(mat L, mat U, mat P, mat X) nogil
+    cdef bool lu(mat L, mat U, mat X) nogil
+    cdef mat pinv(mat A) nogil
+    cdef bool pinv(mat B, mat A) nogil
+    cdef bool qr(mat Q, mat R, mat X) nogil
     
 
 
