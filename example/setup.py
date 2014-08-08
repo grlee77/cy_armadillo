@@ -17,13 +17,16 @@ setup(name='example',
       description='Wrapper to Armadillo',
       package_data={'cyarma': ['*.pyx','*.pxd']},
       cmdclass = {'build_ext': build_ext},
+
       ext_modules = [Extension("example", 
                 [#arma_inc_dir+"/cyarma.cpp",
                                    "example/example.pyx"],
+                extra_compile_args=['-DARMA_NO_DEBUG'],   #don't bounds check ARMA commands in order to improve speed
                 include_dirs = [get_include(), '/usr/include',
-				'/usr/local/include',
+                #include_dirs = [get_include(), '/home/lee8rx/local_libs/include',
                                 arma_inc_dir,'./example', '.'],
-                library_dirs = ['/usr/lib', '/usr/local/lib'],
+                #library_dirs = ['/usr/lib'],
+                library_dirs = ['/home/lee8rx/local_libs'],
                 libraries=["armadillo"],
                 language='c++')],
       )
