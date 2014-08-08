@@ -7,6 +7,7 @@ from cython.operator cimport dereference as deref
 from libcpp cimport bool
 
 cdef extern from "armadillo" namespace "arma" nogil:
+
     # matrix class (double)
     cdef cppclass mat:
         mat(double * aux_mem, int n_rows, int n_cols, bool copy_aux_mem, bool strict) nogil
@@ -100,7 +101,13 @@ cdef extern from "armadillo" namespace "arma" nogil:
     cdef bool solve(mat X, mat A, mat B)
     cdef mat solve(mat A, mat B)
     cdef bool eig_sym(vec eigval, mat eigvec, mat B)
-    cdef bool svd(mat U, vec s, mat V, mat X, method = "standard")
+    cdef vec svd(mat X)
+    cdef bool svd(vec s, mat X)
+    cdef bool svd(mat U, vec s, mat V, mat X)
+    cdef bool svd(mat U, vec s, mat V, mat X, char* method)  #method='dc' is the default for v4.0+
+    cdef bool svd_econ(mat U, vec s, mat V, mat X)
+    cdef bool svd_econ(mat U, vec s, mat V, mat X, char* side)
+    cdef bool svd_econ(mat U, vec s, mat V, mat X, char* side, char * method)   #side='both', method = "dc"
     cdef bool lu(mat L, mat U, mat P, mat X)
     cdef bool lu(mat L, mat U, mat X)
     cdef mat pinv(mat A)
