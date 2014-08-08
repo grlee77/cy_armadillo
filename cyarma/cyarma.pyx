@@ -112,23 +112,22 @@ cdef extern from "armadillo" namespace "arma" nogil:
 
 
 ##### Tools to convert numpy arrays to armadillo arrays ######
-cdef mat * numpy_to_mat(np.ndarray[np.double_t, ndim=2] X):
+cdef mat numpy_to_mat(np.ndarray[np.double_t, ndim=2] X):
     if not X.flags.f_contiguous:
         X = X.copy("F")
     cdef mat *aR  = new mat(<double*> X.data, X.shape[0], X.shape[1], False, True)
-    return aR
+    return deref(aR)
 
-cdef cube * numpy_to_cube(np.ndarray[np.double_t, ndim=3] X):
+cdef cube numpy_to_cube(np.ndarray[np.double_t, ndim=3] X):
     cdef cube *aR
     if not X.flags.c_contiguous:
         raise ValueError("For Cube, numpy array must be C contiguous")
     aR  = new cube(<double*> X.data, X.shape[2], X.shape[1], X.shape[0], False, True)
+    return deref(aR)
 
-    return aR
-
-cdef vec * numpy_to_vec(np.ndarray[np.double_t, ndim=1] x):
+cdef vec numpy_to_vec(np.ndarray[np.double_t, ndim=1] x):
     cdef vec *ar = new vec(<double*> x.data, x.shape[0], False, True)
-    return ar
+    return deref(ar)
 
 #### Get subviews #####
 
